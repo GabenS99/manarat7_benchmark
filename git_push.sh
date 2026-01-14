@@ -5,6 +5,13 @@
 # ============================================================================
 # This script helps you commit and push changes to GitHub in one go
 # ============================================================================
+# Shows what will be committed
+# Prompts before staging changes
+# Asks for commit message
+# Confirms before pushing
+# Usage:
+# ./git_push.sh                    # Interactive mode (prompts for message)
+# ./git_push.sh "Your commit msg"   # With commit message
 
 set -e  # Exit on error
 

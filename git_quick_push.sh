@@ -6,6 +6,13 @@
 # Usage: ./git_quick_push.sh [commit_message]
 # If no message provided, uses timestamp
 # ============================================================================
+# Automatically stages all changes
+# Uses timestamp if no message provided
+# Pushes immediately (no prompts)
+# Usage:
+# ./git_quick_push.sh                    # Auto timestamp message
+# ./git_quick_push.sh "Your commit msg"  # With custom messag
+
 
 set -e
 
