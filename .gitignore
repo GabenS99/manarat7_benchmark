@@ -1,0 +1,318 @@
+# ============================================================================
+# IslamGPT Project - Git Ignore File
+# ============================================================================
+# This file specifies intentionally untracked files that Git should ignore
+# ============================================================================
+
+# ============================================================================
+# PYTHON - Virtual Environments & Cache
+# ============================================================================
+
+# Virtual environments
+islamgpt_env/
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+virtualenv/
+env.bak/
+venv.bak/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache/
+.hypothesis/
+
+# ============================================================================
+# SENSITIVE DATA - API Keys & Credentials
+# ============================================================================
+
+# Environment variables with API keys
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+credentials.json
+secrets.json
+
+# Keep template files
+!env_template.txt
+!.env.example
+
+# ============================================================================
+# PROJECT OUTPUT - Generated Results
+# ============================================================================
+
+# Results directories (may contain large generated files)
+results/
+output/
+predictions/
+evaluations/
+statistics/
+visualizations/
+
+# Keep directory structure but ignore contents
+!results/.gitkeep
+!output/.gitkeep
+
+# Large model files (if downloaded locally)
+models/
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.pb
+
+# Checkpoints (project-specific checkpoint files)
+*.checkpoint
+checkpoints/
+checkpoint_*/
+.checkpoint_*.json
+.checkpoint_*.json.bak
+.global_checkpoint.json
+.global_checkpoint.json.bak
+
+# ============================================================================
+# DATA FILES - Large Datasets
+# ============================================================================
+
+# Uncomment if data files should not be tracked
+# data/
+# *.json
+# *.csv
+# *.xlsx
+# *.xls
+
+# Keep data structure but ignore large files
+# !data/.gitkeep
+# !data/**/.gitkeep
+
+# ============================================================================
+# IDE & EDITOR FILES
+# ============================================================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# PyCharm / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# ============================================================================
+# OPERATING SYSTEM FILES
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# LOGS & TEMPORARY FILES
+# ============================================================================
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+.tmp/
+temp/
+
+# ============================================================================
+# MISC
+# ============================================================================
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Archive files (if large)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Compiled files
+*.class
+*.dll
+*.exe
+
+# Profiling data
+*.prof
+*.lprof
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ============================================================================
+# PROJECT-SPECIFIC
+# ============================================================================
+
+# Internal documentation and notes (not for end users)
+ignore/
+
+# Local configuration overrides
+config.local.yaml
+config.override.yaml
+
+# Test outputs
+test_outputs/
+test_results/
+
+# Benchmark results
+benchmarks/
+*.benchmark
+
+# Documentation builds
+docs/_build/
+site/
+
+# Hugging Face cache (model downloads)
+.cache/
+.huggingface/
+models_cache/
+
+# Model checkpoints and state files (project-specific)
+.checkpoint_*.json
+.checkpoint_*.json.bak
+.global_checkpoint.json
+.global_checkpoint.json.bak
+*.state
+*.pkl
+*.pickle
+
+# Provider-specific temporary files
+*.lock
+*.pid
+
+# ============================================================================
+# END OF .gitignore
+# ============================================================================

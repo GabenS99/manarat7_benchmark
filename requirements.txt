@@ -1,0 +1,151 @@
+# ============================================================================
+# IslamGPT Project - Comprehensive Requirements File
+# ============================================================================
+# This file contains all required packages to run the Islamic language model
+# benchmarking pipeline in a virtual environment (venv).
+#
+# Installation Instructions:
+# 1. Create virtual environment: python -m venv islamgpt_env
+# 2. Activate environment: 
+#    - Windows: islamgpt_env\Scripts\activate
+#    - macOS/Linux: source islamgpt_env/bin/activate
+# 3. Install dependencies: pip install -r requirements.txt
+# 4. Set up environment variables in .env file (see .env.example)
+# ============================================================================
+
+# ============================================================================
+# CORE API CLIENTS - Language Model Providers
+# ============================================================================
+
+# OpenAI API Client (GPT models)
+openai>=1.50.0
+
+# Google Generative AI (Gemini models)
+# Note: google-generativeai is deprecated, but still works for now
+# TODO: Migrate to google-genai when available
+google-generativeai>=0.8.0
+
+# Groq API Client (Llama, Qwen models)
+groq>=0.11.0
+
+# Mistral AI API Client
+mistralai>=1.1.0
+
+# ============================================================================
+# MACHINE LEARNING & AI FRAMEWORKS
+# ============================================================================
+
+# Hugging Face Transformers (for local model inference - ALLaM, JAIS, Jais-2)
+# Default: Stable version (works for ALLaM and JAIS)
+transformers>=4.45.0
+
+# ============================================================================
+# CRITICAL: TRANSFORMERS VERSION INCOMPATIBILITY WARNING
+# ============================================================================
+# ⚠️  MAJOR ISSUE: ALLaM and Jais-2 models require DIFFERENT transformers versions
+#
+# ALLaM Models (ALLaM-7B, ALLaM-34B):
+#   - Require: transformers>=4.45.0 (stable version)
+#   - Command: pip install transformers>=4.45.0
+#   - Verify: python3 -c "import transformers; print(transformers.__version__)"
+#   - Expected: 4.45.0 or 4.x.x (NOT 5.x.x)
+#
+# Jais-2 Models (Jais-2-8B, Jais-2-70B):
+#   - Require: transformers 5.0 (bleeding-edge from source)
+#   - Command: pip install --upgrade git+https://github.com/huggingface/transformers.git
+#   - Verify: python3 -c "import transformers; print(transformers.__version__)"
+#   - Expected: 5.0.0.dev0 or similar (NOT 4.x.x)
+#
+# ❌ CANNOT USE BOTH MODEL TYPES IN THE SAME ENVIRONMENT
+# 
+# SOLUTION: Use separate virtual environments:
+#   1. For ALLaM: Create venv with transformers>=4.45.0
+#   2. For Jais-2: Create venv with transformers 5.0 bleeding-edge
+#   3. Or use only one model type per deployment
+#
+# This is a fundamental incompatibility that cannot be resolved.
+# ============================================================================
+
+# Tiktoken (required for ALLaM model tokenization)
+tiktoken>=0.12.0
+
+# SentencePiece (required for ALLaM/Llama tokenizers)
+sentencepiece>=0.1.99
+
+# PyTorch (required for local model inference)
+torch>=2.1.0
+
+# ============================================================================
+# DATA PROCESSING & UTILITIES
+# ============================================================================
+
+# Environment variable management (.env files)
+python-dotenv>=1.0.0
+
+# HTTP requests (for custom API endpoints like Fanar)
+requests>=2.31.0
+
+# YAML configuration file parsing
+PyYAML>=6.0.1
+
+# Excel file generation and manipulation
+openpyxl>=3.1.2
+
+# Data manipulation and analysis (optional but recommended)
+pandas>=2.1.0
+
+# ============================================================================
+# OPTIONAL DEPENDENCIES - Performance & Development
+# ============================================================================
+
+# JSON schema validation (optional, for advanced validation)
+jsonschema>=4.20.0
+
+# Progress bars for long-running operations (optional)
+tqdm>=4.66.0
+
+# Memory profiling for performance optimization (optional)
+# memory-profiler>=0.61.0
+
+# ============================================================================
+# DEVELOPMENT & TESTING (Optional - uncomment if needed)
+# ============================================================================
+
+# Code formatting and linting
+# black>=23.9.1
+# flake8>=6.1.0
+
+# Testing framework
+# pytest>=7.4.0
+# pytest-asyncio>=0.21.0
+
+# Type checking
+# mypy>=1.6.0
+
+# ============================================================================
+# PLATFORM-SPECIFIC NOTES
+# ============================================================================
+
+# Windows Users:
+# - Make sure to use Command Prompt or PowerShell (not Git Bash)
+# - Some packages may require Visual Studio Build Tools for compilation
+
+# macOS Users:
+# - May need to install Xcode command line tools: xcode-select --install
+# - For Apple Silicon (M1/M2), torch should install ARM64 optimized version
+
+# Linux Users:
+# - May need additional system packages:
+#   sudo apt-get install python3-dev build-essential
+
+# ============================================================================
+# CUDA SUPPORT (Optional - for GPU acceleration)
+# ============================================================================
+
+# For NVIDIA GPU support with PyTorch, replace torch>=2.1.0 with:
+# torch>=2.1.0+cu121 --index-url https://download.pytorch.org/whl/cu121
+
+# ============================================================================
+# MINIMUM PYTHON VERSION: 3.8+
+# RECOMMENDED PYTHON VERSION: 3.9+ 
+# ============================================================================

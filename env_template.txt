@@ -1,0 +1,84 @@
+# ============================================================================
+# IslamGPT Project - Environment Variables Template
+# ============================================================================
+# Copy this file to .env and fill in your actual API keys
+# 
+# Command: cp env_template.txt .env
+# 
+# IMPORTANT: Never commit your .env file with real API keys to version control!
+# The .env file should be in your .gitignore
+# ============================================================================
+
+# ============================================================================
+# OPENAI API CONFIGURATION
+# ============================================================================
+# Get your API key from: https://platform.openai.com/api-keys
+# Required for: GPT-4o, GPT-4-turbo, GPT-3.5-turbo models
+OPENAI_API_KEY=your_openai_api_key_here
+
+# ============================================================================
+# GOOGLE GENERATIVE AI (GEMINI) CONFIGURATION  
+# ============================================================================
+# Get your API key from: https://makersuite.google.com/app/apikey
+# Required for: Gemini Pro, Gemini Flash models
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# ============================================================================
+# GROQ API CONFIGURATION
+# ============================================================================
+# Get your API key from: https://console.groq.com/keys
+# Required for: Llama, Qwen, Mixtral models on Groq
+GROQ_API_KEY=your_groq_api_key_here
+
+# ============================================================================
+# DEEPSEEK API CONFIGURATION
+# ============================================================================
+# Get your API key from: https://platform.deepseek.com/api_keys
+# Required for: DeepSeek Chat, DeepSeek Reasoner models
+DEEPSEEK_API_KEY=your_deepseek_api_key_here
+
+# ============================================================================
+# MISTRAL AI API CONFIGURATION
+# ============================================================================
+# Get your API key from: https://console.mistral.ai/api-keys/
+# Required for: Mistral Large, Mistral Medium models
+MISTRAIL_API_KEY=your_mistral_api_key_here
+
+# ============================================================================
+# FANAR API CONFIGURATION (Islamic-specific models)
+# ============================================================================
+# Contact Fanar AI for API access
+# Required for: Islamic-RAG, Fanar-Sadiq models
+FANAR_API_KEY=your_fanar_api_key_here
+
+# ============================================================================
+# HUGGING FACE CONFIGURATION (Optional - for local models)
+# ============================================================================
+# Get your token from: https://huggingface.co/settings/tokens
+# Required for: Downloading restricted models like ALLaM
+# HUGGINGFACE_TOKEN=your_huggingface_token_here
+
+# ============================================================================
+# NOTES
+# ============================================================================
+# 
+# 1. API Key Security:
+#    - Never share your API keys publicly
+#    - Use environment variables or .env files
+#    - Rotate keys regularly for security
+# 
+# 2. Rate Limits:
+#    - Each provider has different rate limits
+#    - Configure retry settings in config.yaml accordingly
+#    - Monitor your usage to avoid quota exhaustion
+#
+# 3. Costs:
+#    - Most APIs charge per token/request
+#    - Start with small test runs to estimate costs
+#    - Set up billing alerts in provider dashboards
+#
+# 4. Local Models:
+#    - ALLaM and JAIS models can run locally if you have GPU resources
+#    - Local inference doesn't require API keys but needs significant compute
+#
+# ============================================================================

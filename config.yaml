@@ -1,0 +1,81 @@
+base_dir: "." #this is the base directory of the project.If the input and/or output paths are in a different directory, change this to the appropriate path.
+
+paths:
+  input:
+    COMP: "data/COMP"
+    MCQ: "data/MCQ"
+    KNOW: "data/KNOW"
+  output:
+    predictions: "results/predictions"
+    evaluations: "results/evaluations"
+    statistics: "results/statistics"
+    visualizations: "results/visualizations"
+
+# Single source of truth for data configuration
+data_to_predict:
+  question_types: [KNOW, COMP, MCQ]
+  difficulty_levels: [Beginner, Intermediate, Advanced]
+
+data_to_evaluate:
+  question_types: []
+  difficulty_levels: []
+
+
+prediction_models:
+  # ============================================================================
+  # PROVIDER-SPECIFIC CONFIGURATION
+  # ============================================================================
+  # 
+  # FOR ALLaM PROVIDERS (ALLaM-34B):
+  # - Uncomment and set local_allam to your model path (local directory)
+  # - Comment out local_jais and local_jais2
+  # - Example: local_allam: ["/path/to/your/allam-34b-model"]
+  #
+  # FOR JAIS PROVIDERS (Jais-2-70B):
+  # - Uncomment and set local_jais2 to Jais-2-70B model
+  # - Comment out local_allam and local_jais
+  # - Ensure transformers is upgraded: pip install --upgrade git+https://github.com/huggingface/transformers.git
+  # - Example: local_jais2: [inceptionai/Jais-2-70B-Chat]
+  #
+  # ============================================================================
+  
+  # Cloud models (optional - for comparison)
+  # openai: [gpt-5.1]
+  # gemini: [gemini-3-pro-preview]
+  # deepseek: [deepseek-chat, deepseek-reasoner]
+  # fanar: [Fanar-Sadiq, Islamic-RAG]
+  # groq: [allam-2-7b]
+  
+  # ALLaM Provider Configuration (ALLaM-34B)
+  local_allam: ["/path/to/your/allam-34b-model"]  # REPLACE with your local ALLaM-34B model path
+  
+  # JAIS Provider Configuration (Jais-2-70B)
+  # local_jais2: [inceptionai/Jais-2-70B-Chat]  # UNCOMMENT and use for JAIS providers
+
+evaluation_models: {}
+  # openai: [gpt-5.2]
+  # gemini: [gemini-2.5-flash]
+  # deepseek: [deepseek-chat]
+
+# Prediction parameters
+prediction_parameters:
+  few_shots: false
+  show_cot: false
+  verbose_instructions: true
+  abstention: false
+  verbalized_elicitation: true
+  temperature: 0
+  max_tokens: 2000
+  word_limit: null
+  batch_save_size: 25 
+  checkpoint_enabled: true
+  max_retries: 3  # Number of retry attempts for failed predictions
+  retry_delay: 2.5  # Initial retry delay in seconds
+  retry_backoff: 2  # Backoff multiplier for exponential backoff
+  evaluation_mode: "standard"  # Evaluation mode: null (default), "standard" (v1), or "granular" (v2)
+  
+  # Parallel processing settings
+  enable_parallel_processing: true  # Set to false for sequential processing
+  max_parallel_workers: 1  # CRITICAL: Always 1 for GPU models (prevents out-of-memory errors)
+  # Note: For cloud API models, you can use higher values (3-5), but for local GPU models, always use 1
+  parallel_timeout: 120  # Timeout in seconds for parallel worker futures (default: 120)
