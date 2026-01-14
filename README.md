@@ -1,4 +1,4 @@
-# IslamGPT Evaluation Pipeline
+# MANARAT7 BENCHMARK
 
 **For ALLaM and JAIS Model Providers**
 
