@@ -317,6 +317,11 @@ models_cache/
 git_push.sh
 git_quick_push.sh
 
+# Project helper scripts and documentation (local use only)
+activate_env.sh
+INSTALLATION.md
+download_jais2.py
+
 # ============================================================================
 # END OF .gitignore
 # ============================================================================
