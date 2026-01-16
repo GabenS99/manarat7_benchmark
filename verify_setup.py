@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/shahd/manarat7_benchmark/islamgpt_env/bin/python3
 """
 IslamGPT Setup Verification Script
 ==================================

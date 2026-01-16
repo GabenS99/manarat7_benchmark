@@ -313,7 +313,7 @@ models_cache/
 *.lock
 *.pid
 
-# Git helper scripts (local use only)
+# Git helper scripts (local use only - not tracked)
 git_push.sh
 git_quick_push.sh
 

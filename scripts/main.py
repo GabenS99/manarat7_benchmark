@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
 """
 Main script for prediction pipeline.
 
 Processes all data_to_predict files with all prediction_models configured.
 """
 import traceback
+import sys
+import os
 from typing import Dict, Any, List, Tuple, Callable, Optional
 from dataclasses import asdict
 import json

@@ -1,5 +1,30 @@
 import requests
-from transformers import AutoTokenizer, AutoModelForCausalLM
+# Check if transformers is available, provide helpful error if not
+try:
+    from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
+except ImportError as e:
+    import sys
+    import os
+    print("=" * 80)
+    print("ERROR: transformers module not found!")
+    print("=" * 80)
+    print(f"\nYou are using system Python instead of the virtual environment.")
+    print(f"Current Python: {sys.executable}")
+    venv_python = os.path.join(os.path.dirname(os.path.dirname(__file__)), "islamgpt_env", "bin", "python3")
+    print("\nSOLUTIONS:")
+    print("  1. Activate the virtual environment first:")
+    print("     source islamgpt_env/bin/activate")
+    print("     python3 scripts/main.py")
+    print("\n  2. Use the venv Python directly:")
+    if os.path.exists(venv_python):
+        print(f"     {venv_python} scripts/main.py")
+    else:
+        print(f"     ./islamgpt_env/bin/python3 scripts/main.py")
+    print("\n  3. Use the helper script:")
+    print("     source activate_env.sh")
+    print("     python3 scripts/main.py")
+    print("=" * 80)
+    sys.exit(1)
 import torch
 import google.generativeai as genai
 from google.generativeai.types import GenerateContentResponse
@@ -952,9 +977,13 @@ def get_prediction_local_jais2(
             })
         
         with torch.no_grad():  # Save memory during inference
+            # Use GenerationConfig to avoid deprecation warning
+            # This prevents passing both generation_config and individual params
+            generation_config = GenerationConfig(**generation_kwargs)
+            
             outputs = clients.jais2_model.generate(
                 **inputs,
-                **generation_kwargs
+                generation_config=generation_config
             )
         
         # Decode response
@@ -1252,9 +1281,13 @@ def get_prediction_local_allam(
             })
         
         with torch.no_grad():  # Save memory during inference
+            # Use GenerationConfig to avoid deprecation warning
+            # This prevents passing both generation_config and individual params
+            generation_config = GenerationConfig(**generation_kwargs)
+            
             outputs = clients.allam_model.generate(
                 **inputs,
-                **generation_kwargs
+                generation_config=generation_config
             )
         
         # Decode response

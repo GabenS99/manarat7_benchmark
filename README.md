@@ -44,6 +44,7 @@ python3 setup_venv.py
 python3 -m venv islamgpt_env
 source islamgpt_env/bin/activate  # Linux/macOS
 # islamgpt_env\Scripts\activate  # Windows
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -100,25 +101,31 @@ prediction_models:
 
 **For ALLaM Providers (ALLaM-34B):**
 ```bash
-# 1. Verify model path exists
+# 1. Activate environment
+source islamgpt_env/bin/activate
+
+# 2. Verify model path exists
 ls /path/to/your/allam-34b-model
 
-# 2. Test model loading
-python3 test_allam_local.py
+# 3. Test model loading
+python test_allam_local.py
 ```
 Expected: Model loads successfully and generates responses ✅
 
 **For JAIS Providers (Jais-2-70B):**
 ```bash
-# 1. Verify transformers upgrade (REQUIRED)
-python3 -c "import transformers; print(transformers.__version__)"
+# 1. Activate environment
+source islamgpt_env/bin/activate
+
+# 2. Verify transformers upgrade (REQUIRED)
+python -c "import transformers; print(transformers.__version__)"
 # Should show: 5.0.0.dev0 or similar (NOT 4.x.x)
 
-# 2. If not upgraded, upgrade now:
+# 3. If not upgraded, upgrade now:
 pip install --upgrade git+https://github.com/huggingface/transformers.git
 
-# 3. Verify setup
-python3 verify_jais2_setup.py
+# 4. Verify setup
+python verify_jais2_setup.py
 ```
 Expected: 7/7 checks passed ✅
 
@@ -129,14 +136,18 @@ Expected: 7/7 checks passed ✅
 source islamgpt_env/bin/activate
 
 # Run full evaluation pipeline
-python3 scripts/main.py
+python scripts/main.py
 ```
+
+> **Note**: After activation, use `python` (not `python3`) - it automatically points to the venv Python with all packages installed.
 
 The pipeline will:
 1. Load your model into GPU memory
-2. Process all questions (75 files, ~3,500+ questions)
-3. Save predictions in `results/predictions/`
+2. Process all questions (75 files, ~2,250 questions)
+3. Save predictions incrementally in `results/predictions/`
 4. Generate performance statistics
+
+**Expected runtime**: ~15-20 hours for full evaluation (depends on model and GPU)
 
 
 ## 🔧 Provider Configuration
@@ -148,8 +159,8 @@ prediction_parameters:
   temperature: 0          # Deterministic output
   max_tokens: 2000       # Response length limit
   few_shots: false       # Enable/disable few-shot examples
-  show_cot: false        # Chain of thought reasoning
-  batch_save_size: 25    # Save every N questions
+  show_cot: false        # Chain of thought reasoning (set true for detailed reasoning)
+  batch_save_size: 3     # Save every N questions (recommended: 3-25)
   checkpoint_enabled: true # Resume if interrupted
   max_parallel_workers: 1  # CRITICAL: Always 1 for GPU models
 ```
